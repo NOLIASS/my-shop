@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}MyShop{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="{% url 'home' %}" class="logo">🛍 MyShop</a>
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}">Головна</a></li>
+      {% for cat in categories %}
+        <li><a href="{% url 'category' cat.slug %}">{{ cat.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <h3>🛍 MyShop</h3>
+      <p>Найкращі товари за найкращими цінами</p>
+    </div>
+    <div>
+      <h4>Навігація</h4>
+      <ul>
+        <li><a href="{% url 'home' %}">Головна</a></li>
+        <li><a href="{% url 'about' %}">Про нас</a></li>
+        <li><a href="{% url 'contacts' %}">Контакти</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Контакти</h4>
+      <p>📧 info@myshop.ua</p>
+      <p>📞 +380 99 123 45 67</p>
+    </div>
+  </div>
+  <p class="footer-bottom">© 2025 MyShop. Всі права захищені.</p>
+</footer>
+
+</body>
+</html>

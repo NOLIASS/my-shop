@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ title }}</title>
-</head>
-<body>
-  <h1>{{ title }}</h1>
-  <p>Ми — найкращий інтернет-магазин електроніки.</p>
-  <a href="{% url 'home' %}">← На головну</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<p>Ми — найкращий інтернет-магазин електроніки в Україні.</p>
+<p>Працюємо з 2020 року. Тільки оригінальні товари.</p>
+{% endblock %}

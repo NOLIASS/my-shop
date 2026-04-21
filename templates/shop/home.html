@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ title }}</title>
-</head>
-<body>
-  <h1>{{ title }}</h1>
-  <p>Ласкаво просимо до нашого магазину!</p>
-  <nav>
-    <ul>
-      {% for page in pages %}
-        <li><a href="{% url page.url %}">{{ page.name }}</a></li>
-      {% endfor %}
-    </ul>
-  </nav>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>Ласкаво просимо до MyShop 🛍</h1>
+
+<div class="products-grid">
+  {% for product in products %}
+    <div class="product-card">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% else %}
+        <img src="https://placehold.co/400x180?text=No+Image" alt="No image">
+      {% endif %}
+      <h3><a href="#">{{ product.name }}</a></h3>
+      <p class="price">{{ product.price }} грн</p>
+      <a href="#" class="btn">Детальніше</a>
+    </div>
+  {% empty %}
+    <p>Товарів поки немає.</p>
+  {% endfor %}
+</div>
+{% endblock %}
