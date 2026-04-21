@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>🛒 Ваш кошик</h1>
+
+{% if messages %}
+  {% for message in messages %}
+    <p class="message">{{ message }}</p>
+  {% endfor %}
+{% endif %}
+
+{% if items %}
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Товар</th>
+        <th>Ціна</th>
+        <th>Кількість</th>
+        <th>Сума</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td><a href="{% url 'product' item.product.slug %}">{{ item.product.name }}</a></td>
+        <td>{{ item.product.price }} грн</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.total_price }} грн</td>
+        <td>
+          <a href="{% url 'remove_from_cart' item.id %}" class="btn-remove">✕</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="cart-total">
+    <p>Разом: <strong>{{ total }} грн</strong></p>
+    <button class="btn-buy" disabled>Оформити замовлення</button>
+  </div>
+
+{% else %}
+  <p>Кошик порожній.</p>
+  <a href="{% url 'home' %}" class="back-link">← Повернутись до товарів</a>
+{% endif %}
+
+<!-- Форма підписки -->
+<div class="newsletter-block">
+  <h3>📧 Підпишіться на наші новини</h3>
+  <p>Отримуйте інформацію про акції та нові товари</p>
+  <form method="post" action="{% url 'home' %}" class="newsletter-form">
+    {% csrf_token %}
+    <input type="text"  name="name"  placeholder="Ваше ім'я" class="form-input">
+    <input type="email" name="email" placeholder="Ваш Email" class="form-input" required>
+    <button type="submit" class="btn-newsletter">Підписатись</button>
+  </form>
+</div>
+
+{% endblock %}

@@ -234,3 +234,152 @@ h1 {
 .back-link:hover {
   color: #e94560;
 }
+
+/* ── CART ── */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 14px 20px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-table th {
+  background: #1a1a2e;
+  color: #fff;
+}
+
+.cart-table a {
+  color: #1a1a2e;
+  text-decoration: none;
+}
+
+.cart-table a:hover {
+  color: #e94560;
+}
+
+.btn-remove {
+  color: #e94560 !important;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.cart-total {
+  margin-top: 24px;
+  text-align: right;
+  font-size: 1.3rem;
+}
+
+.cart-total strong {
+  color: #e94560;
+}
+
+/* ── NEWSLETTER ── */
+.newsletter-block {
+  margin-top: 60px;
+  background: #1a1a2e;
+  color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.newsletter-block h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.newsletter-block p {
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.form-input {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.95rem;
+  width: 220px;
+}
+
+.btn-newsletter {
+  padding: 10px 24px;
+  background: #e94560;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn-newsletter:hover {
+  background: #c73652;
+}
+
+/* ── RATING ── */
+.rating-block {
+  margin: 24px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.rating-block h3 {
+  margin-bottom: 12px;
+}
+
+.avg-rating {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+}
+
+.rating-form {
+  margin-top: 12px;
+}
+
+.rating-radio {
+  margin-right: 6px;
+}
+
+.btn-rate {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 20px;
+  background: #1a1a2e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-rate:hover {
+  background: #e94560;
+}
+
+.already-rated {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.message {
+  padding: 10px 16px;
+  background: #d4edda;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  color: #155724;
+}

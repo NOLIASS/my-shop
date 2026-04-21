@@ -20,14 +20,37 @@
     <p class="product-price">{{ product.price }} грн</p>
     <p class="product-description">{{ product.description }}</p>
     <p class="product-stock">
-      {% if product.in_stock %}
-        ✅ В наявності
-      {% else %}
-        ❌ Немає в наявності
-      {% endif %}
+      {% if product.in_stock %}✅ В наявності{% else %}❌ Немає в наявності{% endif %}
     </p>
 
-    <button class="btn-buy" disabled>🛒 Купити</button>
+    <a href="{% url 'add_to_cart' product.slug %}" class="btn-buy">🛒 Додати в кошик</a>
+
+    <!-- Рейтинг -->
+    <div class="rating-block">
+      <h3>⭐ Рейтинг товару</h3>
+      {% if avg_rating %}
+        <p class="avg-rating">Середня оцінка: <strong>{{ avg_rating }} / 5</strong></p>
+      {% else %}
+        <p>Ще немає оцінок — будьте першим!</p>
+      {% endif %}
+
+      {% if messages %}
+        {% for message in messages %}
+          <p class="message">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+
+      {% if not user_rated %}
+        <form method="post" class="rating-form">
+          {% csrf_token %}
+          <p>Оцініть товар:</p>
+          {{ rating_form.score }}
+          <button type="submit" class="btn-rate">Відправити оцінку</button>
+        </form>
+      {% else %}
+        <p class="already-rated">✅ Ви вже оцінили цей товар</p>
+      {% endif %}
+    </div>
 
     <a href="{% url 'category' product.category.slug %}" class="back-link">
       ← Назад до категорії
