@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ category.name }}{% endblock %}
 
 {% block content %}
-<h1>Ласкаво просимо до MyShop 🛍</h1>
+<h1>{{ category.name }}</h1>
+{% if category.description %}
+  <p>{{ category.description }}</p>
+{% endif %}
 
 <div class="products-grid">
   {% for product in products %}
@@ -17,7 +20,9 @@
       <a href="{% url 'product' product.slug %}" class="btn">Детальніше</a>
     </div>
   {% empty %}
-    <p>Товарів поки немає.</p>
+    <p>У цій категорії немає товарів.</p>
   {% endfor %}
 </div>
+
+<a href="{% url 'home' %}" class="back-link">← На головну</a>
 {% endblock %}

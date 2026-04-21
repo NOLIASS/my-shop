@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 
 
@@ -18,10 +18,30 @@ def home(request):
 def categories(request):
     context = {
         **get_base_context(),
-        'title':      'Всі категорії',
+        'title':           'Всі категорії',
         'categories_list': Category.objects.all(),
     }
     return render(request, 'shop/categories.html', context)
+
+
+def category_detail(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    products = Product.objects.filter(category=category, in_stock=True)
+    context = {
+        **get_base_context(),
+        'category': category,
+        'products': products,
+    }
+    return render(request, 'shop/category_detail.html', context)
+
+
+def product_detail(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    context = {
+        **get_base_context(),
+        'product': product,
+    }
+    return render(request, 'shop/product_detail.html', context)
 
 
 def about(request):

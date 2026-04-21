@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+
+  <div class="product-detail-image">
+    {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    {% else %}
+      <img src="https://placehold.co/500x400?text=No+Image" alt="No image">
+    {% endif %}
+  </div>
+
+  <div class="product-detail-info">
+    <h1>{{ product.name }}</h1>
+    <p class="product-category">
+      Категорія: <a href="{% url 'category' product.category.slug %}">{{ product.category }}</a>
+    </p>
+    <p class="product-price">{{ product.price }} грн</p>
+    <p class="product-description">{{ product.description }}</p>
+    <p class="product-stock">
+      {% if product.in_stock %}
+        ✅ В наявності
+      {% else %}
+        ❌ Немає в наявності
+      {% endif %}
+    </p>
+
+    <button class="btn-buy" disabled>🛒 Купити</button>
+
+    <a href="{% url 'category' product.category.slug %}" class="back-link">
+      ← Назад до категорії
+    </a>
+  </div>
+
+</div>
+{% endblock %}
